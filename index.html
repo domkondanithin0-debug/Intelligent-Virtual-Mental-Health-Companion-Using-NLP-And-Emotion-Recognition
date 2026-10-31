@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7664d9">
+  <meta name="description" content="Mindora - Your Intelligent Mental Wellness Companion">
+  <title>Mindora | Mental Wellness Companion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <!-- AUTHENTICATION -->
+  <main id="authScreen" class="auth-screen">
+    <div class="auth-decoration decoration-one"></div>
+    <div class="auth-decoration decoration-two"></div>
+
+    <section class="auth-card" id="loginPanel">
+      <div class="brand">
+        <div class="brand-icon">✿</div>
+        <div>
+          <h1>Mindora</h1>
+          <p>Your emotional wellness companion</p>
+        </div>
+      </div>
+
+      <div class="auth-heading">
+        <span class="eyebrow">WELCOME BACK</span>
+        <h2>Good to see you again!</h2>
+        <p>Your mental wellness journey continues here.</p>
+      </div>
+
+      <form id="loginForm">
+        <label for="loginEmail">Email or username</label>
+        <input id="loginEmail" type="text" placeholder="Enter your email" required>
+
+        <label for="loginPassword">Password</label>
+        <div class="password-wrap">
+          <input id="loginPassword" type="password" placeholder="Enter your password" required>
+          <button type="button" class="password-toggle" data-toggle="loginPassword">Show</button>
+        </div>
+
+        <div class="form-options">
+          <label class="check-label">
+            <input type="checkbox" id="rememberMe"> Remember me
+          </label>
+          <button type="button" class="text-button" data-auth="forgot">Forgot password?</button>
+        </div>
+
+        <button class="primary-button full-button" type="submit">Login to Mindora →</button>
+      </form>
+
+      <p class="auth-switch">Don't have an account?
+        <button class="text-button" data-auth="register">Create account</button>
+      </p>
+      <p class="demo-note">Demo authentication: accounts are stored locally in this browser.</p>
+    </section>
+
+    <section class="auth-card hidden" id="registerPanel">
+      <div class="brand">
+        <div class="brand-icon">✿</div>
+        <div><h1>Mindora</h1><p>A little care goes a long way</p></div>
+      </div>
+      <div class="auth-heading">
+        <span class="eyebrow">START YOUR JOURNEY</span>
+        <h2>Create your account</h2>
+        <p>Make space for your emotional wellbeing.</p>
+      </div>
+
+      <form id="registerForm">
+        <label for="regName">Full name</label>
+        <input id="regName" type="text" placeholder="Your name" required minlength="2">
+
+        <label for="regEmail">Email address</label>
+        <input id="regEmail" type="email" placeholder="you@example.com" required>
+
+        <div class="form-row">
+          <div>
+            <label for="regAge">Age</label>
+            <input id="regAge" type="number" min="13" max="110" placeholder="Age" required>
+          </div>
+          <div>
+            <label for="regGender">Gender (optional)</label>
+            <select id="regGender">
+              <option value="">Prefer not to say</option>
+              <option>Female</option><option>Male</option>
+              <option>Non-binary</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="regPassword">Password</label>
+        <div class="password-wrap">
+          <input id="regPassword" type="password" placeholder="At least 6 characters" required minlength="6">
+          <button type="button" class="password-toggle" data-toggle="regPassword">Show</button>
+        </div>
+        <div class="strength-track"><div id="strengthBar"></div></div>
+        <small id="strengthText">Password strength</small>
+
+        <label for="regConfirm">Confirm password</label>
+        <input id="regConfirm" type="password" placeholder="Repeat password" required>
+
+        <label class="check-label terms">
+          <input type="checkbox" id="terms" required>
+          I agree to the demo terms and privacy notice.
+        </label>
+
+        <button class="primary-button full-button" type="submit">Create my account →</button>
+      </form>
+      <p class="auth-switch">Already registered?
+        <button class="text-button" data-auth="login">Login</button>
+      </p>
+    </section>
+
+    <section class="auth-card hidden" id="forgotPanel">
+      <div class="brand"><div class="brand-icon">✿</div><h1>Mindora</h1></div>
+      <div class="auth-heading">
+        <span class="eyebrow">ACCOUNT RECOVERY</span>
+        <h2>Reset your password</h2>
+        <p>Enter your registered email address.</p>
+      </div>
+      <form id="forgotForm">
+        <label for="forgotEmail">Email address</label>
+        <input type="email" id="forgotEmail" placeholder="you@example.com" required>
+        <button class="primary-button full-button" type="submit">Reset password</button>
+      </form>
+      <p class="auth-switch"><button class="text-button" data-auth="login">← Back to login</button></p>
+      <p id="forgotMessage" class="message"></p>
+    </section>
+  </main>
+
+  <!-- APPLICATION -->
+  <div id="appScreen" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon">✿</span>
+        <div><h2>Mindora</h2><small>Mindful living</small></div>
+      </div>
+
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav id="sideNavigation">
+        <button class="nav-item active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="nav-item" data-page="chat">☏ <span>AI Companion</span></button>
+        <button class="nav-item" data-page="emotion">♡ <span>Emotion Recognition</span></button>
+        <button class="nav-item" data-page="camera">◎ <span>Camera Analysis</span></button>
+        <button class="nav-item" data-page="moods">☷ <span>Mood Tracker</span></button>
+        <button class="nav-item" data-page="suggestions">✧ <span>Mindset Suggestions</span></button>
+        <button class="nav-item" data-page="activities">❀ <span>Wellness Activities</span></button>
+        <button class="nav-item" data-page="analytics">▥ <span>Progress Analytics</span></button>
+        <button class="nav-item" data-page="support">♥ <span>Help & Support</span></button>
+        <button class="nav-item" data-page="profile">♙ <span>My Profile</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span>🌱</span>
+          <p>Small steps every day create meaningful change.</p>
+        </div>
+        <button class="nav-item logout-button" id="logoutButton">↪ <span>Logout</span></button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button id="menuToggle" class="icon-button mobile-menu">☰</button>
+        <div class="breadcrumb">Mindora <span>/</span> <strong id="pageTitle">Dashboard</strong></div>
+        <div class="topbar-right">
+          <span id="clock"></span>
+          <button class="profile-chip" data-page="profile">
+            <span class="avatar" id="topAvatar">U</span>
+            <span id="topName">User</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="page-dashboard">
+          <div class="welcome-banner">
+            <div>
+              <span class="eyebrow">YOUR PERSONAL WELLNESS SPACE</span>
+              <h1>Hello, <span id="welcomeName">Friend</span> 🌷</h1>
+              <p>Take a breath. You deserve a moment of care today.</p>
+              <button class="light-button" data-page="moods">Check in with yourself →</button>
+            </div>
+            <div class="welcome-art">☁️<div>🌿</div></div>
+          </div>
+
+          <div class="section-heading">
+            <div><h2>Your wellness overview</h2><p>A gentle look at your recent wellbeing.</p></div>
+            <span class="date-pill" id="todayDate"></span>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-icon lavender">♡</span>
+              <p>Today's mood</p><h2 id="todayMood">Not recorded</h2>
+              <small>Your daily check-in</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon blue">✧</span>
+              <p>Wellness score</p><h2 id="wellnessScore">--/100</h2>
+              <small>Illustrative, not clinical</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon peach">☷</span>
+              <p>Mood check-ins</p><h2 id="totalMoods">0</h2>
+              <small>Records saved locally</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon mint">◷</span>
+              <p>Active days</p><h2 id="activeDays">0</h2>
+              <small>Days with a mood entry</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel">
+              <div class="panel-heading"><div><h3>Weekly mood journey</h3><p>Your recorded moods this week</p></div>
+                <button class="text-button" data-page="analytics">View all →</button></div>
+              <div class="mini-chart" id="dashboardChart"></div>
+            </article>
+            <article class="panel quote-panel">
+              <span class="quote-symbol">“</span>
+              <h3 id="dailyQuote">You don't have to be perfect to make progress.</h3>
+              <p>YOUR DAILY REMINDER</p>
+              <button class="text-button" id="newQuote">Another reminder ↗</button>
+            </article>
+          </div>
+
+          <div class="section-heading"><div><h2>Quick actions</h2><p>Choose what you need right now.</p></div></div>
+          <div class="quick-grid">
+            <button class="quick-card" data-page="chat"><span>💬</span><b>Talk it out</b><small>Chat with your companion</small></button>
+            <button class="quick-card" data-page="emotion"><span>💜</span><b>Understand emotions</b><small>Explore your feelings</small></button>
+            <button class="quick-card" data-page="activities"><span>🧘</span><b>Take a mindful break</b><small>Relax and recharge</small></button>
+            <button class="quick-card" data-page="suggestions"><span>🌻</span><b>Find encouragement</b><small>Personalized suggestions</small></button>
+          </div>
+
+          <div class="section-heading"><div><h2>Recent mood history</h2><p>Your latest check-ins.</p></div></div>
+          <div class="panel"><div id="recentMoods" class="recent-list"></div></div>
+        </section>
+
+        <!-- CHAT -->
+        <section class="page" id="page-chat">
+          <div class="page-intro"><span class="eyebrow">A SAFE SPACE TO EXPRESS YOURSELF</span><h1>Your AI companion 💜</h1><p>Share what's on your mind. You don't need to have all the answers.</p></div>
+          <div class="chat-layout">
+            <div class="panel chat-panel">
+              <div class="chat-header"><span class="avatar large-avatar">✿</span><div><b>Mindora Companion</b><small><span class="online-dot"></span> Demo assistant · Here to listen</small></div></div>
+              <div id="chatMessages" class="chat-messages" aria-live="polite">
+                <div class="chat-message bot"><div class="bubble">Hello! 🌷 I'm glad you're here. How are you feeling today? You can share anything that's on your mind.</div><small>Mindora · Just now</small></div>
+              </div>
+              <div class="quick-replies">
+                <button data-reply="I'm feeling stressed">I'm stressed</button>
+                <button data-reply="I feel sad today">I'm sad</button>
+                <button data-reply="I need motivation">I need motivation</button>
+              </div>
+              <form id="chatForm" class="chat-input">
+                <input id="chatInput" placeholder="Type what you're feeling..." autocomplete="off" required maxlength="1000">
+                <button type="submit" aria-label="Send message">➤</button>
+              </form>
+              <p class="disclaimer">Mindora uses simulated keyword-based responses. It is not a real AI therapist or emergency service.</p>
+            </div>
+            <aside class="panel chat-side"><span class="side-illustration">🌼</span><h3>It's okay to feel</h3><p>Every emotion has a place. Try to notice your feelings without judging yourself.</p><div class="soft-note">💡 Try describing what happened, how you feel, and what might help.</div></aside>
+          </div>
+        </section>
+
+        <!-- EMOTION -->
+        <section class="page" id="page-emotion">
+          <div class="page-intro"><span class="eyebrow">NLP-INSPIRED ANALYSIS</span><h1>Understand your emotions</h1><p>Write a little about how you're feeling. We'll explore the words together.</p></div>
+          <div class="panel analysis-panel">
+            <label for="emotionText">What's on your mind?</label>
+            <textarea id="emotionText" rows="5" maxlength="2000" placeholder="For example: I have so many assignments and I'm worried about my exams..."></textarea>
+            <div class="analysis-actions"><small>Try to express yourself in your own words.</small><button id="analyzeEmotion" class="primary-button">Analyze my feelings ✧</button></div>
+          </div>
+          <div id="emotionResult" class="panel result-panel hidden">
+            <span class="eyebrow">YOUR EXPLORATION RESULT</span>
+            <div class="emotion-result-head"><span id="emotionEmoji">💜</span><div><small>Possible emotion detected</small><h2 id="emotionName">Neutral</h2></div></div>
+            <p id="emotionDescription"></p>
+            <div class="confidence-track"><div id="confidenceBar"></div></div>
+            <small id="confidenceText">Illustrative keyword-match estimate</small>
+            <div class="soft-note" id="emotionResponse"></div>
+            <h3>Activities you could try</h3><div id="emotionActivities" class="suggestion-list"></div>
+            <p class="disclaimer">This is a simple educational keyword-matching demonstration, not a clinical assessment or reliable measurement of emotions.</p>
+          </div>
+        </section>
+
+        <!-- CAMERA -->
+        <section class="page" id="page-camera">
+          <div class="page-intro"><span class="eyebrow">CAMERA DEMONSTRATION</span><h1>Camera wellness space 📷</h1><p>Explore a camera preview. Camera access does not identify emotions.</p></div>
+          <div class="camera-grid">
+            <div class="panel camera-panel">
+              <div class="camera-frame"><video id="cameraVideo" autoplay muted playsinline></video><div id="cameraPlaceholder"><span>📷</span><p>Your camera preview will appear here</p></div></div>
+              <div class="camera-controls"><button class="primary-button" id="startCamera">Start camera</button><button class="secondary-button" id="stopCamera" disabled>Stop camera</button></div>
+              <p id="cameraStatus" class="message">Camera is currently off.</p>
+            </div>
+            <div class="panel"><span class="stat-icon lavender">♡</span><h3>About this demonstration</h3><p>Camera permission only provides a live video preview. This project does not include a trained facial-expression model.</p><div class="soft-note">You can use the text-based emotion exploration page to try the NLP-inspired demo.</div><h3>Privacy reminder</h3><p>Video is not uploaded or stored by this application. Stop the camera when finished.</p></div>
+          </div>
+        </section>
+
+        <!-- MOODS -->
+        <section class="page" id="page-moods">
+          <div class="page-intro"><span class="eyebrow">DAILY SELF CHECK-IN</span><h1>How are you feeling today?</h1><p>There is no right or wrong answer. Just check in with yourself.</p></div>
+          <div class="panel mood-panel">
+            <h3>Choose the mood that feels closest</h3>
+            <div class="mood-options" id="moodOptions">
+              <button data-mood="Happy"><span>😊</span>Happy</button>
+              <button data-mood="Sad"><span>😔</span>Sad</button>
+              <button data-mood="Angry"><span>😠</span>Angry</button>
+              <button data-mood="Anxious"><span>😟</span>Anxious</button>
+              <button data-mood="Stressed"><span>😣</span>Stressed</button>
+              <button data-mood="Neutral"><span>😐</span>Neutral</button>
+            </div>
+            <label for="moodNote">Add a note (optional)</label>
+            <textarea id="moodNote" rows="3" placeholder="What made you feel this way?"></textarea>
+            <button id="saveMood" class="primary-button">Save today's mood ♡</button>
+            <p id="moodMessage" class="message"></p>
+          </div>
+          <div class="section-heading"><div><h2>Your mood calendar</h2><p>Recorded check-ins by date.</p></div></div>
+          <div class="panel"><div class="calendar-header"><button id="prevMonth" class="icon-button">←</button><h3 id="calendarMonth"></h3><button id="nextMonth" class="icon-button">→</button></div><div id="moodCalendar" class="calendar-grid"></div></div>
+          <div class="section-heading"><div><h2>Mood history</h2><p>Your personal check-in journal.</p></div></div>
+          <div class="panel"><div id="moodHistory" class="recent-list"></div></div>
+        </section>
+
+        <!-- SUGGESTIONS -->
+        <section class="page" id="page-suggestions">
+          <div class="page-intro"><span class="eyebrow">SMALL STEPS, GENTLE PROGRESS</span><h1>Your personalized mindset guide 🌻</h1><p>Choose how you would like to feel. We'll suggest some gentle steps.</p></div>
+          <div class="panel">
+            <label for="desiredMindset">What mindset would you like to work towards?</label>
+            <select id="desiredMindset">
+              <option value="happy">I want to feel happy</option>
+              <option value="peaceful">I want to feel peaceful</option>
+              <option value="stress">I want to reduce stress</option>
+              <option value="confident">I want to become confident</option>
+              <option value="motivated">I want to improve my motivation</option>
+              <option value="balanced">I want to feel emotionally balanced</option>
+            </select>
+            <button class="primary-button" id="generateSuggestions">Create my wellness plan ✧</button>
+          </div>
+          <div class="section-heading"><div><h2>Suggestions for you</h2><p>Simple actions you can try at your own pace.</p></div></div>
+          <div id="personalSuggestions" class="suggestion-grid"></div>
+        </section>
+
+        <!-- ACTIVITIES -->
+        <section class="page" id="page-activities">
+          <div class="page-intro"><span class="eyebrow">MAKE TIME FOR YOURSELF</span><h1>Wellness activities 🌿</h1><p>Give yourself permission to pause and recharge.</p></div>
+          <div class="activity-grid">
+            <article class="panel activity-card"><span>🌬️</span><h3>Guided breathing</h3><p>Try a gentle breathing exercise. Inhale and exhale slowly without forcing your breath.</p><div id="breathingCircle" class="breathing-circle"><span id="breathingText">Ready?</span></div><p id="breathingTimer" class="activity-status">1-minute exercise</p><button class="primary-button" id="breathingStart">Start breathing</button></article>
+            <article class="panel activity-card"><span>🧘</span><h3>Meditation timer</h3><p>Take a quiet moment to relax your body and notice your surroundings.</p><div class="timer-display" id="meditationDisplay">02:00</div><div class="timer-controls"><button class="primary-button" id="meditationStart">Start</button><button class="secondary-button" id="meditationReset">Reset</button></div></article>
+            <article class="panel activity-card"><span>✨</span><h3>Positive affirmations</h3><p id="affirmationText" class="affirmation">I am allowed to grow at my own pace.</p><button class="secondary-button" id="newAffirmation">New affirmation</button></article>
+            <article class="panel activity-card"><span>📔</span><h3>Gratitude journal</h3><p>Write down something you appreciate today.</p><textarea id="gratitudeInput" rows="3" placeholder="Today I am grateful for..."></textarea><button class="primary-button" id="saveGratitude">Save reflection</button><div id="gratitudeHistory" class="gratitude-history"></div></article>
+            <article class="panel activity-card"><span>🌙</span><h3>Sleep wellbeing</h3><p>Build a gentle nighttime routine:</p><ul><li>Keep a consistent bedtime.</li><li>Reduce screen time before bed.</li><li>Make your room comfortable.</li><li>Try a relaxing activity.</li></ul></article>
+            <article class="panel activity-card"><span>🚶</span><h3>Healthy habits</h3><p>Choose one small habit to practice today.</p><div id="habitList"><label><input type="checkbox"> Drink enough water</label><label><input type="checkbox"> Take a short walk</label><label><input type="checkbox"> Take a mindful break</label><label><input type="checkbox"> Connect with someone</label></div></article>
+          </div>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="page" id="page-analytics">
+          <div class="page-intro"><span class="eyebrow">YOUR JOURNEY SO FAR</span><h1>Progress & analytics</h1><p>Explore your locally saved mood records. Every journey is different.</p></div>
+          <div class="stats-grid">
+            <article class="stat-card"><span class="stat-icon lavender">☷</span><p>Total entries</p><h2 id="analyticsTotal">0</h2></article>
+            <article class="stat-card"><span class="stat-icon blue">♡</span><p>Most recorded mood</p><h2 id="topMood">—</h2></article>
+            <article class="stat-card"><span class="stat-icon mint">◷</span><p>Recorded days</p><h2 id="analyticsDays">0</h2></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel"><div class="panel-heading"><div><h3>Weekly mood overview</h3><p>Last seven days</p></div></div><div id="weeklyChart" class="mini-chart"></div></article>
+            <article class="panel"><div class="panel-heading"><div><h3>Emotion distribution</h3><p>Based on mood check-ins</p></div></div><div id="distributionChart" class="distribution-chart"></div></article>
+          </div>
+          <article class="panel"><h3>Understanding your progress</h3><p>Your records are personal reflections, not a medical measurement. A changing mood is a normal part of life. You can use these patterns as a conversation starter with a qualified professional if helpful.</p></article>
+        </section>
+
+        <!-- SUPPORT -->
+        <section class="page" id="page-support">
+          <div class="page-intro"><span class="eyebrow">YOU DON'T HAVE TO FACE IT ALONE</span><h1>Help & support 💗</h1><p>Reaching out for help is a sign of courage.</p></div>
+          <div class="support-grid">
+            <article class="panel support-card"><span>🤝</span><h3>Talk to someone you trust</h3><p>Consider reaching out to a trusted friend, family member, teacher, or another supportive person. You deserve to be heard.</p></article>
+            <article class="panel support-card"><span>🩺</span><h3>Professional support</h3><p>A qualified mental health professional can help you understand your feelings and explore appropriate support.</p></article>
+            <article class="panel crisis-panel"><span>♥</span><h3>Immediate safety matters</h3><p>If you may hurt yourself or someone else, or are in immediate danger, contact local emergency services now. Move near a trusted person and tell them directly that you need help. Do not stay alone if you feel unsafe.</p><p><b>India emergency number: 112</b></p><p>For mental health support in India, Tele-MANAS: <b>14416</b> (or 1-800-891-4416). If unavailable, contact emergency services or go to the nearest hospital.</p><small>Support service availability can change. In an emergency, use local emergency services.</small></article>
+          </div>
+          <div class="panel"><h3>A gentle reminder</h3><p>Mindora is an academic demonstration. It cannot diagnose, treat, monitor emergencies, or replace professional medical or psychological care.</p></div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="page" id="page-profile">
+          <div class="page-intro"><span class="eyebrow">YOUR PERSONAL SPACE</span><h1>My profile</h1><p>Manage your local demonstration account.</p></div>
+          <div class="panel profile-panel">
+            <div class="profile-avatar" id="profileAvatar">U</div>
+            <h2 id="profileHeading">Your profile</h2>
+            <p id="profileEmail"></p>
+            <form id="profileForm">
+              <label for="profileName">Full name</label><input id="profileName" required>
+              <label for="profileAge">Age</label><input id="profileAge" type="number" min="13" max="110">
+              <label for="profileGender">Gender</label><select id="profileGender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Other</option></select>
+              <button class="primary-button" type="submit">Save profile</button>
+            </form>
+            <p id="profileMessage" class="message"></p>
+            <div class="danger-zone"><h3>Account data</h3><p>Your demonstration data is stored in this browser's localStorage.</p><button id="clearData" class="danger-button">Clear my mood and journal data</button></div>
+          </div>
+        </section>
+
+      </main>
+      <footer class="footer">Mindora © 2026 · Made with care for your wellbeing · Educational demonstration only</footer>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
